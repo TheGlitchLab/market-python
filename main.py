@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import *
-from PyQt6.QtCore import Qt, QTimer, QModelIndex
+from PyQt6.QtCore import Qt, QTimer, QModelIndex, QRegularExpression
 from PyQt6 import QtCore, QtGui, QtWidgets, uic
-from PyQt6.QtGui import QStandardItem, QStandardItemModel
+from PyQt6.QtGui import QStandardItem, QStandardItemModel, QRegularExpressionValidator
 import sys
 from models import ListModel
 from aditionalcontent import *
@@ -20,8 +20,8 @@ class UI(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setStyleSheet(open('style/stylesheet.qss', 'r').read())
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.listView.setModel(self.model)
+        
         self.signals()
-        self.setButtonsToView()
         self.timer = QTimer(self)
         self.timer.start(350)
         self.timer.timeout.connect(self.ButtonState)
@@ -39,6 +39,14 @@ class UI(QtWidgets.QMainWindow, Ui_MainWindow):
         self.x_button.clicked.connect(self.close)
         self.settings_button.clicked.connect(self.settingsTab)
         self.select_client.clicked.connect(self.select)
+        self.setButtonsToView()
+        self.regex()
+    
+    def regex(self):
+        regex_pattern = r"^[a-zA-Z0-9\- ']+$"
+        regex = QRegularExpression(regex_pattern)
+        text_validator = QRegularExpressionValidator(regex)
+        self.item_search.setValidator(text_validator)
     
     def select(self):
         print('selected')
@@ -209,6 +217,7 @@ class UI(QtWidgets.QMainWindow, Ui_MainWindow):
             items = [item['Item'] for item in self.model.database]
             if self.item not in items:
                 self.data_append(self.item)
+                self.setButtonsToView()
                 self.item_search.clear()
             else:
                 self.item_search.clear()
@@ -303,13 +312,11 @@ class UI(QtWidgets.QMainWindow, Ui_MainWindow):
         self.listView.setCurrentIndex(QModelIndex())
         self.updateImage()
     
-
     def settingsTab(self):
         self.Dialog = QDialog(self, flags=Qt.WindowType.FramelessWindowHint | Qt.WindowType.Window)
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
         # self.SettingsPosition()
 
-        
         self.Dialog.resize(500,295)
         
         self.title_top = QLabel('Settings', self.Dialog)
