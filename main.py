@@ -99,23 +99,26 @@ class UI(QtWidgets.QMainWindow, Ui_MainWindow):
         elif Offer_Type == 'Sell':
             self.sell_radio_button.setChecked(True)
         
-        if Price and Amount is not None:
+        if Price is not None and Amount != '':
             self.create_button.setText('Update')
         else:
             self.create_button.setText('Create')
     
     def changes(self):
         if self.input.text() != '':
-            self.create_button.setEnabled(True)
             self.amount_input.setText('1')
+            self.create_button.setEnabled(True)
         else:
+            self.amount_input.setText('0')                        
             self.create_button.setEnabled(False) 
-            self.amount_input.setText('0')    
-            
+                        
     def create_offer(self):
         selected_index = self.returnIndex()
         if selected_index is None: return
-
+        
+        if self.amount_input.text() == '':
+            self.amount_input.setText('1')
+        
         for index, item in enumerate(self.model.database):
             if item['Item'] == self.model.data(selected_index,role=Qt.ItemDataRole.DisplayRole, id='Item'):
                 self.model.database[index]['Price'] = self.input.text()
@@ -173,6 +176,7 @@ class UI(QtWidgets.QMainWindow, Ui_MainWindow):
             self.amount_input.resize(50,18)
             self.amount_input.move(self.amount.x() + self.amount.width(), self.amount.y())
             self.amount_input.setText('0')
+            
             
             self.anonymous = QCheckBox('Anonymous', self)
             self.anonymous.resize(100,20)
