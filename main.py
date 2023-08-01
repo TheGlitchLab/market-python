@@ -3,7 +3,7 @@ from PyQt6.QtCore import Qt, QTimer, QModelIndex, QRegularExpression
 from PyQt6 import QtCore, QtGui, QtWidgets, uic
 from PyQt6.QtGui import QStandardItem, QStandardItemModel, QRegularExpressionValidator
 import sys
-from models import ListModel
+from models import ListModel, TableModel
 from aditionalcontent import *
 
 ui_file = 'market.ui'
@@ -20,6 +20,7 @@ class UI(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setStyleSheet(open('style/stylesheet.qss', 'r').read())
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.listView.setModel(self.model)
+        self.listView.setItemDelegate(TextLimitDelegate())
         
         self.signals()
         self.timer = QTimer(self)
@@ -44,9 +45,7 @@ class UI(QtWidgets.QMainWindow, Ui_MainWindow):
     
     def regex(self):
         regex_pattern = r"^[a-zA-Z0-9\- ']+$"
-        regex = QRegularExpression(regex_pattern)
-        text_validator = QRegularExpressionValidator(regex)
-        self.item_search.setValidator(text_validator)
+        self.item_search.setValidator(QRegularExpressionValidator(QRegularExpression(regex_pattern)))
     
     def select(self):
         print('selected')
@@ -177,7 +176,6 @@ class UI(QtWidgets.QMainWindow, Ui_MainWindow):
             self.amount_input.move(self.amount.x() + self.amount.width(), self.amount.y())
             self.amount_input.setText('0')
             
-            
             self.anonymous = QCheckBox('Anonymous', self)
             self.anonymous.resize(100,20)
             self.anonymous.move(self.amount_input.x(), self.amount_input.y() + self.anonymous.height())
@@ -238,9 +236,6 @@ class UI(QtWidgets.QMainWindow, Ui_MainWindow):
         self.model.database.append(data)
         self.model.save()
         self.model.layoutChanged.emit()
-
-        # index = self.model.index(self.model.rowCount() - 1)
-        # self.model.RemoveButtons(index)            
 
     def returnIndex(self):
         selected_indexes = self.listView.selectedIndexes()
@@ -319,7 +314,6 @@ class UI(QtWidgets.QMainWindow, Ui_MainWindow):
     def settingsTab(self):
         self.Dialog = QDialog(self, flags=Qt.WindowType.FramelessWindowHint | Qt.WindowType.Window)
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-        # self.SettingsPosition()
 
         self.Dialog.resize(500,295)
         
@@ -343,7 +337,6 @@ class UI(QtWidgets.QMainWindow, Ui_MainWindow):
         self.market_settings.setCheckable(True)
         self.market_settings.setChecked(True)
         self.market_settings.clicked.connect(self.market)
-        # self.market_settings.setIcon(QIcon('src/image/about_off.png'))
                 
         self.premium_time = QPushButton('Premium Time', self.Dialog)
         self.premium_time.setFixedSize(100,20)
@@ -396,9 +389,7 @@ class UI(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tab_title.setObjectName('title_container')
         self.tab_title.setGeometry(0,0,365,20)
         
-        ##Execute
         self.market()
-        
         
         self.Dialog.exec()
         
@@ -451,7 +442,7 @@ class UI(QtWidgets.QMainWindow, Ui_MainWindow):
             
             password_label = QLabel("Password:")
             self.password_input = QLineEdit()
-            self.password_input.setEchoMode(QLineEdit.EchoMode.Password)  # To hide the password characters
+            self.password_input.setEchoMode(QLineEdit.EchoMode.Password)
             self.login_button = QPushButton("Reconnect")
             self.login_button.setCheckable(True)
             
@@ -467,11 +458,9 @@ class UI(QtWidgets.QMainWindow, Ui_MainWindow):
             self.password_toggle_button.setFixedSize(16,16)
             self.password_toggle_button.clicked.connect(lambda: self.toggle('password'))
 
-            #Spacers
             horizontal_spacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
             vertical_spacer = QSpacerItem(20, 20, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-            # Create a grid layout and add the widgets to it
             self.GLayout = QGridLayout(self.main_widget)
             self.GLayout.addWidget(login_label, 0, 0)
             self.GLayout.addWidget(self.login_input, 0, 1)
@@ -518,39 +507,20 @@ class UI(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def history(self):
         self.table_widget = QTableView()        
-        self.table_model = QStandardItemModel(self.table_widget)
+        self.table_model = TableModel()
         self.table_widget.setModel(self.table_model)
-        self.table_model.setHorizontalHeaderLabels(['Date', 'Balance', 'Description', 'Amount'])
         self.table_widget.verticalHeader().setVisible(False)
         self.table_widget.setEditTriggers(QTableView.EditTrigger.NoEditTriggers)
         self.table_widget.verticalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Fixed)
         self.table_widget.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
         self.table_widget.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
         self.table_widget.verticalHeader().setDefaultSectionSize(3)
-        self.table_widget.setItemDelegate(RowStylized())
+        self.table_widget.setAlternatingRowColors(True)
 
-
-        self.populate_table()
         self.tab_title.setText('History')
         self.history_layout = QGridLayout(self.main_widget)
         self.history_layout.addWidget(self.table_widget)
         self.history_layout.setContentsMargins(0, 20, 0, 0)
-
-    def populate_table(self):
-        # Example data to populate the table
-        data = [
-            ["2023-07-31", "10000", "Demon Helmet", "4"],
-            ["2023-08-01", "1500", "Tibia coins", "25"],
-            ["2023-08-05", "30000", "Boots of Haste", "10"],
-            ["2023-08-01", "1500000000", "Golden Helmet", "1"]
-        ]
-
-        for row_data in data:
-            row = []
-            for item_data in row_data:
-                item = QStandardItem(item_data)
-                row.append(item)
-            self.table_model.appendRow(row)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
