@@ -264,11 +264,9 @@ class UI(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def ButtonState(self):
         if self.model.isEmpty():
-            self.save_button.setEnabled(False)
             self.start_button.setEnabled(False)
             self.save_button.setEnabled(False)            
         else:
-            self.save_button.setEnabled(True)
             self.start_button.setEnabled(True)
             self.save_button.setEnabled(True)
                 
@@ -477,24 +475,21 @@ class UI(QtWidgets.QMainWindow, Ui_MainWindow):
             self.clear_layout(self.GLayout)
             
     def toggle(self, var):
-        if var == 'login':
-            if self.login_toggle_button.isChecked():
-                self.login_toggle_button.setStyleSheet("border-image: url('src/image/eye-on.png');")
-                self.login_input.setEchoMode(QLineEdit.EchoMode.Normal)
-                self.login_input.setFocus()
+        field_map = {
+            'login': (self.login_input, self.login_toggle_button),
+            'password': (self.password_input, self.password_toggle_button)
+        }
+
+        if var in field_map:
+            input_field, toggle_button = field_map[var]
+            if toggle_button.isChecked():
+                toggle_button.setStyleSheet("border-image: url('src/image/button-eye-down.png');")
+                input_field.setEchoMode(QLineEdit.EchoMode.Normal)
+                input_field.setFocus()
             else:
-                self.login_toggle_button.setStyleSheet('')
-                self.login_input.setEchoMode(QLineEdit.EchoMode.Password)
-                self.login_input.setFocus()
-        elif var == 'password':
-            if self.password_toggle_button.isChecked():
-                self.password_toggle_button.setStyleSheet("border-image: url('src/image/eye-on.png');")
-                self.password_input.setEchoMode(QLineEdit.EchoMode.Normal)
-                self.password_input.setFocus()
-            else:
-                self.password_toggle_button.setStyleSheet('')
-                self.password_input.setEchoMode(QLineEdit.EchoMode.Password)
-                self.password_input.setFocus()
+                toggle_button.setStyleSheet('')
+                input_field.setEchoMode(QLineEdit.EchoMode.Password)
+                input_field.setFocus()
                 
 
     def clear_layout(self, layout):
