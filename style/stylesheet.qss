@@ -276,13 +276,14 @@ QLabel#title_container{
 }
 
 QTableView{
-    background-color: #404040;
+    background-color: #484848;
     color: #AAAAAA;
     border-top: 1px solid #171717;
     border-left: 1px solid #171717;
     border-right: 1px solid #757575;
     border-bottom: 1px solid #757575;
     selection-background-color: #585858;
+    alternate-background-color: #414141;
 }
 
 QTableView::item:!selected:focus{
