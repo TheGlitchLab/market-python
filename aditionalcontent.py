@@ -1,23 +1,16 @@
-from PyQt6.QtWidgets import QStyledItemDelegate
-from PyQt6.QtGui import QColor
+import typing
+from PyQt6 import QtCore
+from PyQt6.QtWidgets import QStyledItemDelegate, QPushButton
+from PyQt6.QtGui import QColor, QBrush
+from PyQt6.QtCore import Qt
 
 
-class FormatItem(QStyledItemDelegate):
-    def paint(self, painter, option, index):
-        text = index.data()
-        if len(text) > 18:
-            text = text[:15] + '...'  # Truncate and add ellipsis
-            
-        super().paint(painter, option, index)
-        
-class RowStylized(QStyledItemDelegate):
+class TextLimitDelegate(QStyledItemDelegate):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-    def paint(self, painter, option, index):
-        if index.row() % 2 == 0:
-            option.backgroundBrush = QColor('#484848')
-        else:
-            option.backgroundBrush = QColor('#414141')
+    def displayText(self, text, locale, limit=17):
+        if len(text) > limit:
+            text = ''.join(text[:limit]) + '...' 
 
-        super().paint(painter, option, index)
+        return super().displayText(text, locale)
