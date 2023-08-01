@@ -1,0 +1,16 @@
+[
+    {
+        "Item": "Ferumbras Hats",
+        "Price": null,
+        "Amount": null,
+        "Offer_type": null,
+        "Anonymous_type": null
+    },
+    {
+        "Item": "Golden Legs",
+        "Price": "15000",
+        "Amount": "1",
+        "Offer_type": "Sell",
+        "Anonymous_type": true
+    }
+]

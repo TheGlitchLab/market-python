@@ -1,0 +1,305 @@
+QMainWindow{
+    background-image: url("src/image/background.png");
+    border-top: 2px solid #777777;
+    border-left: 2px solid #777777;
+    border-right: 2px solid #29292a;
+    border-bottom: 2px solid #29292a;
+}
+QRadioButton::indicator{
+    padding:3px;
+}
+QRadioButton::indicator:checked
+{
+  border: none;
+  outline: none;
+  image: url(src/image/radio_checked.png);
+}
+QRadioButton::indicator:unchecked {
+  margin-right: 2px;
+  border: none;
+  outline: none;
+  image: url(src/image/radio_unchecked.png);
+}
+QRadioButton{ spacing: -2px; }
+
+QPushButton{
+    background-color: transparent;
+    border-right: 1px solid rgba(38,38,39,255);
+    border-bottom: 1px solid rgba(38,38,39,255);
+    border-left: 1px solid rgba(122,123,123,255);
+    border-top: 1px solid rgba(122,123,123,255);
+}
+QPushButton:pressed{
+    color: white;
+    background-color: transparent;
+    border-right: 1px solid rgba(114,114,115,255);
+    border-bottom: 1px solid rgba(114,114,115,255);
+    border-left: 1px solid rgba(38,38,38,255);
+    border-top: 1px solid rgba(38,38,38,255);
+}
+QPushButton:disabled{
+    color: gray;
+}
+QPushButton:checked{
+	color: #33b249;
+    border-right: 1px solid rgba(114,114,115,255);
+    border-bottom: 1px solid rgba(114,114,115,255);
+    border-left: 1px solid rgba(38,38,38,255);
+    border-top: 1px solid rgba(38,38,38,255);
+}
+QWidget#W_Container QPushButton {
+    background-image: url('src/image/background.png');
+    border-top: 1px solid #717172;
+    border-left: 2px solid #717172;
+    border-bottom: 2px solid #2e2e2f;
+    border-right: 2px solid #2e2e2f;
+}
+
+QWidget#W_Container QPushButton:checked {
+    color: white;
+    border-right: 1px solid rgba(114,114,115,255);
+    border-bottom: 1px solid rgba(114,114,115,255);
+    border-left: 1px solid rgba(38,38,38,255);
+    border-top: 1px solid rgba(38,38,38,255);
+}
+QWidget {
+    outline: none;
+    color: #AAAAAA;
+    font-family: Verdana, sans-serif;
+}
+QListView::item{
+    background: transparent;
+    border-bottom: 1px solid rgba(38,38,38, 255);
+    margin-left: -2px;
+}
+
+QListView::item:selected {
+    background: transparent;
+}
+
+QListView{
+background-image: url("src/image/background.png");
+border-right: 2px solid rgba(102,102,102,255);
+border-bottom: 2px solid rgba(102,102,102,255);
+border-top: 2px solid rgba(34,34,34,255);
+border-left: 2px solid rgba(34,34,34,255);
+}
+
+
+QListView:disabled{
+    background-image: url("src/image/background.png");
+    color: grey;
+}
+
+QGroupBox{
+    border-right: 1px solid rgba(117, 118, 117, 1);
+    border-bottom: 1px solid rgba(117, 118, 117, 1);
+    border-left: 1px solid rgba(0, 0, 0, 1);
+    border-top: 1px solid rgba(0, 0, 0, 1);
+}
+
+QLineEdit {
+    background-image: url('src/image/background.png');
+    font-size: 12px;
+    
+    border-right: 1px solid rgba(117, 118, 117, 1);
+    border-bottom: 1px solid rgba(117, 118, 117, 1);
+    border-left: 1px solid rgba(0, 0, 0, 1);
+    border-top: 1px solid rgba(0, 0, 0, 1);
+}
+
+QCheckBox::indicator {
+    width: 12px;
+    height: 12px;
+    font-size: 5px;
+}
+
+QCheckBox::indicator:unchecked {
+    image: url('src/image/checkbox-unchecked.png');
+}
+
+QCheckBox::indicator:checked {
+    image: url('src/image/checkbox-checked.png');
+}
+QDialog {
+background-image: url("src/image/background.png");
+border-top: 1px solid #777777;
+border-left: 3px solid #777777;
+border-right: 3px solid #29292a;
+border-bottom: 3px solid #29292a;
+color: #AAAAAA;
+}
+QLabel#title {
+    border-top: 1px solid #777777;
+    border-left: 2px solid #777777;
+    border-bottom: 2px solid #29292a;
+    border-right: 2px solid #353535;
+    background-color: rgba(0,0,0, 35);
+}
+QLabel#title_container{
+    border-top: 1px solid #777777;
+    border-left: 2px solid #777777;
+    border-bottom: 3px solid #29292a;
+    border-right: 3px solid #353535;
+    background-color: rgba(0,0,0, 35);
+}
+#x_button{
+    border-image: url('src/image/close_button.png')
+}
+#x_button:pressed{
+    border-image: url('src/image/console-buttonclose-down.png')
+}
+
+
+#search_button{
+    border-image:url('src/image/search_off.png')
+}
+#search_button:pressed{
+    border-image:url('src/image/search_on.png')
+}
+
+#coin_img{
+    border-image: url('src/image/icon-goldcoin.png')
+}
+
+
+
+#W_Container{
+    background-color: rgba(0,0,0,65);
+    border-top: 1px solid #717172;
+    border-left: 2px solid #717172;
+    border-bottom: 2px solid #282929;
+    border-right: 2px solid #282929;
+}
+
+#main_widget{
+    background-color: #404040;
+    border-top: 1px solid #717172;
+    border-left: 2px solid #717172;
+    border-bottom: 2px solid #282929;
+    border-right: 2px solid #282929;
+}
+#background_title{
+    background-image: url('src/image/background.png');
+}
+
+#tutorial_button{
+    background-color: rgba(27, 63, 94, 225);
+    border-right: 1px solid rgba(19, 43, 64, 255);
+    border-bottom: 1px solid rgba(19, 43, 64, 255);
+    border-left: 1px solid rgba(44,103,154,255);
+    border-top: 1px solid rgba(44,103,154,255);
+}
+#tutorial_button:pressed{
+    background-color: rgba(27, 63, 94, 225);
+    border-right: 1px solid rgba(44,103,154,255);
+    border-bottom: 1px solid rgba(44,103,154,255);
+    border-left: 1px solid rgba(19, 43, 64, 255);
+    border-top: 1px solid rgba(19, 43, 64, 255);
+}
+
+#Remove_Button{
+    outline: none;
+    border-image: url('src/image/button_stock.png');
+}
+#Remove_Button:pressed{
+    outline: none;
+    border-image: url('src/image/button_stock_on.png')
+}
+
+#minimize_button{
+    font-weight: bold;
+    font-size: 14px;
+}
+#minimize_button:pressed{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#value_input{
+    background: #363636;
+    border-top: 1px solid #171717;
+    border-left: 1px solid #171717;
+    border-right: 1px solid #757575;
+    border-bottom: 1px solid #757575;
+}
+#offer_widget_label{
+    font-weight: normal;
+    font-size: 12px;
+}
+#offer_widget_offer{
+    color: #AAAAAA;
+    background-color: transparent;
+    border-right: 1px solid rgba(38,38,39,255);
+    border-bottom: 1px solid rgba(38,38,39,255);
+    border-left: 1px solid rgba(122,123,123,255);
+    border-top: 1px solid rgba(122,123,123,255);
+}
+
+
+#offer_input{
+    background: #363636;
+    border-top: 1px solid #171717;
+    border-left: 1px solid #171717;
+    border-right: 1px solid #757575;
+    border-bottom: 1px solid #757575;
+}
+
+#settings_button{
+    border-image: url('src/image/settings_up.png');
+}
+#settings_button:pressed{
+    border-image: url('src/image/settings_down.png');
+}
+#offer_label{
+    font-size: 12px;
+    font-weight: normal;
+}
+
+#toggle_off {
+    border-image: url('src/image/eye-off.png');
+}
+
+#toggle_on {
+    border-image: url('src/image/eye-on.png');
+}
+
+#Image{
+    border-image: url("src/image/containerslot-goldenborder.png");
+    background: #363636;
+    border-top: 1px solid #171717;
+    border-left: 1px solid #171717;
+    border-right: 1px solid #757575;
+    border-bottom: 1px solid #757575;
+    color: #AAAAAA;
+}
+
+QTableView{
+    background-color: #404040;
+    color: #AAAAAA;
+    border-top: 1px solid #171717;
+    border-left: 1px solid #171717;
+    border-right: 1px solid #757575;
+    border-bottom: 1px solid #757575;
+    selection-background-color: #585858;
+}
+
+QTableView::item:!selected:focus{
+    background: transparent;
+}
+
+QTableView::item:selected:focus{
+    border: none;
+    outline: none;
+}
+QHeaderView{
+    font-size: 10px;
+}
+QHeaderView::section{
+    background-color: #363636;
+    font-size: 10px;
+    outline:white;
+    border: white;
+}
+QHeaderView::section:selected{
+    font-size: 10px;}
