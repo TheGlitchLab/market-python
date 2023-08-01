@@ -145,18 +145,18 @@ QLabel#title_container{
     background-color: rgba(0,0,0, 35);
 }
 #x_button{
-    border-image: url('src/image/close_button.png')
+    border-image: url('src/image/button-title-up.png')
 }
 #x_button:pressed{
-    border-image: url('src/image/console-buttonclose-down.png')
+    border-image: url('src/image/button-title-down.png')
 }
 
 
 #search_button{
-    border-image:url('src/image/search_off.png')
+    border-image:url('src/image/button-search-up.png')
 }
 #search_button:pressed{
-    border-image:url('src/image/search_on.png')
+    border-image:url('src/image/button-search-down.png')
 }
 
 #coin_img{
@@ -201,11 +201,11 @@ QLabel#title_container{
 
 #Remove_Button{
     outline: none;
-    border-image: url('src/image/button_stock.png');
+    border-image: url('src/image/button-remove-up.png');
 }
 #Remove_Button:pressed{
     outline: none;
-    border-image: url('src/image/button_stock_on.png')
+    border-image: url('src/image/button-remove-down.png')
 }
 
 #minimize_button{
@@ -247,10 +247,10 @@ QLabel#title_container{
 }
 
 #settings_button{
-    border-image: url('src/image/settings_up.png');
+    border-image: url('src/image/button-settings-up.png');
 }
 #settings_button:pressed{
-    border-image: url('src/image/settings_down.png');
+    border-image: url('src/image/button-settings-down.png');
 }
 #offer_label{
     font-size: 12px;
@@ -258,15 +258,15 @@ QLabel#title_container{
 }
 
 #toggle_off {
-    border-image: url('src/image/eye-off.png');
+    border-image: url('src/image/button-eye-up.png');
 }
 
 #toggle_on {
-    border-image: url('src/image/eye-on.png');
+    border-image: url('src/image/button-eye-down.png');
 }
 
 #Image{
-    border-image: url("src/image/containerslot-goldenborder.png");
+    border-image: url("src/image/golden-border.png");
     background: #363636;
     border-top: 1px solid #171717;
     border-left: 1px solid #171717;
